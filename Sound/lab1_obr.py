@@ -64,5 +64,5 @@ ax.set_xlabel('Концентрация $CO_{2}$ [%]', loc='center', fontsize=10
 
 plt.show()
 
-fig.savefig("speed-of-sound.png")
+#fig.savefig("speed-of-sound.png")
 
