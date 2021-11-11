@@ -26,16 +26,15 @@ def speedOfSound(temperature, h2oX, co2Max):
     return soundSpeed
 
 #assembling data
-#conditions = np.loadtxt("conditions.txt", dtype = float)
-temp = 22.6 #conditions[0]
-h2oX = 0.005 #абс влажность
+temp = 24.7
+h2oX = 0.0069 #абс влажность
 conc = np.linspace(0, 5, 10)
 speed = speedOfSound(temp, h2oX, conc)
 conc *= 100
 k = np.polyfit(speed, conc, 1)
 #direct measures
-speed1 = 0
-speed2 = 0
+speed1 = 344.6
+speed2 = 342.6
 conc1 = np.polyval(k, speed1)
 conc2 = np.polyval(k, speed2)
 
@@ -64,5 +63,5 @@ ax.set_xlabel('Концентрация $CO_{2}$ [%]', loc='center', fontsize=10
 
 plt.show()
 
-#fig.savefig("speed-of-sound.png")
+fig.savefig("speed-of-sound.png")
 
