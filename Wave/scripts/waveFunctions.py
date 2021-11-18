@@ -47,7 +47,7 @@ def waitForOpen():
 ########################################
 
 def save(samples, start, finish, height):
-    filename = 'wave-data {} {}.txt'.format(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start)), height)
+    filename = 'wave-data {} {} mm.txt'.format(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start)), height)
 
     with open(filename, "w") as outfile:
         outfile.write('- Wave Lab\n')
@@ -66,5 +66,5 @@ def read(filename):
     return samples, duration, len(samples)
 
 def show(data):
-    plt.scatter(data)
+    plt.plot(data)
     plt.show()

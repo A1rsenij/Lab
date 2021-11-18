@@ -4,13 +4,13 @@ import time
 import waveFunctions as w
 
 w.initSpiAdc()
-height = 0 #insert height
+height = 120 #insert height
 data = []
 start = time.time()
 finish = start
 try:
     while (finish - start) < 10:
-        data.append(w.getAdc)
+        data.append(w.getAdc())
         finish = time.time()
 finally:
     w.deinitSpiAdc()
