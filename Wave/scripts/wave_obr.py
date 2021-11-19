@@ -33,35 +33,35 @@ adc_data = []
 #20 mm
 file = 'wave-data 2021-11-18 15_52_45 20 mm.txt' #insert filename
 data, dur, l = w.read(file)
-adc_data.append(data.sum()/l)
+adc_data.append(data.mean())
 #40mm
 file = 'wave-data 2021-11-18 15_56_22 40 mm.txt' #insert filename
 data, dur, l = w.read(file)
-adc_data.append(data.sum()/l)
+adc_data.append(data.mean())
 #60mm
 file = 'wave-data 2021-11-18 15_58_20 60 mm.txt' #insert filename
 data, dur, l = w.read(file)
-adc_data.append(data.sum()/l)
+adc_data.append(data.mean())
 #80mm
 file = 'wave-data 2021-11-18 16_01_31 80 mm.txt' #insert filename
 data, dur, l = w.read(file)
-adc_data.append(data.sum()/l)
+adc_data.append(data.mean())
 #100mm
 file = 'wave-data 2021-11-18 16_04_52 100 mm.txt' #insert filename
 data, dur, l = w.read(file)
-adc_data.append(data.sum()/l)
+adc_data.append(data.mean())
 #120mm
 file = 'wave-data 2021-11-18 16_11_00 120 mm.txt' #insert filename
 data, dur, l = w.read(file)
-adc_data.append(data.sum()/l)
+adc_data.append(data.mean())
 adc_data = np.array(adc_data)
 #fit
 k = np.polyfit(adc_data, height, 4)
-apr = np.polyval(k, np.linspace(2000, 3000, 100))
+apr = np.polyval(k, np.linspace(1500, 3000, 100))
 #plot
 fig, ax = plt.subplots(figsize=(9, 6), dpi=100)
 ax.scatter(height, adc_data, label='Измерения', marker='*')
-ax.plot(apr, np.linspace(2000, 3000, 100), label='Калибровочная функция в диапазоне [2000:3000] отсчётов АЦП', c='orange', linewidth=1.2)
+ax.plot(apr, np.linspace(1500, 3000, 100), label='Калибровочная функция в диапазоне [1500:3000] отсчётов АЦП', c='orange', linewidth=1.2)
 
 ax.legend(fontsize=10, loc='upper left')
 
@@ -69,9 +69,7 @@ ax.grid(which="major", linewidth=0.5)
 ax.grid(which="minor", linestyle='--', linewidth=0.25)
 plt.minorticks_on()
 
-fig.subplots_adjust(bottom=0.15, left=0.1)
-
-ax.axis([apr[0] - 10, apr.max() + 10, 2000 - 50, 3000 + 50])
+ax.axis([apr[0] - 10, apr.max() + 10, 1500 - 50, 3000 + 50])
 
 ax.set_title('Калибровочный график зависимости показаний АЦП от уровня воды', loc='center', fontsize=15)
 ax.set_ylabel('Отсчёты АЦП', loc='center', fontsize=10)
@@ -79,7 +77,7 @@ ax.set_xlabel('Уровень воды [мм]', loc='center', fontsize=10)
 
 plt.show()
 
-fig.savefig("height-calibration.png", dpi=1000)
+fig.savefig("height-calibration.png", dpi=500)
 
 ### handling ###
 
@@ -102,7 +100,6 @@ ax.plot(duration, data, label='Уровень воды в кювете (120 мм
 ax.grid(which="major", linewidth=0.5)
 ax.grid(which="minor", linestyle='--', linewidth=0.25)
 plt.minorticks_on()
-fig.subplots_adjust(bottom=0.15, left=0.1)
 ax.axis([0, 3, 0, 150])
 ax.set_title('Уровень воды в кювете после открытия торцевой двери', loc='center', fontsize=15)
 ax.set_ylabel('Уровень воды [мм]', loc='center', fontsize=10)
@@ -145,4 +142,4 @@ ax.vlines(ltime, 0, 150, color='green', linestyle='--')
 ax.legend(fontsize=10, loc='upper right')
 
 plt.show()
-fig.savefig("velocity.png", dpi=1000)
+fig.savefig("velocity.png", dpi=500)
