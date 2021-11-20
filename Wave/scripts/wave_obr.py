@@ -85,12 +85,12 @@ fig, ax = plt.subplots(figsize=(12, 8), dpi=100)
 
 length = 1.4100 #insert length
 dl = 0.0005
+dt = 0.05
 #120mm
 file = 'wave-data 2021-11-18 16_13_11 120 mm.txt' #insert filename
 #plot
 data, dur, l = w.read(file)
 data = data[:int(l/5):20]
-dt = 15/len(data)
 data = np.polyval(k, data)
 duration = np.linspace(0, 3, len(data), 0.5)
 
@@ -104,7 +104,7 @@ ax.axis([0, 3, 0, 150])
 ax.set_title('Уровень воды в кювете после открытия торцевой двери', loc='center', fontsize=15)
 ax.set_ylabel('Уровень воды [мм]', loc='center', fontsize=10)
 ax.set_xlabel('Время [с]', loc='center', fontsize=10)
-plt.text(0.05, 125,'L = {:.4f}$\pm${:.4f} [м]\nt = {:.3f}$\pm${:.3f} [c]\nV = {:.3f}$\pm${:.3f} [м/c]'.format(
+plt.text(0.05, 125,'L = {:.4f}$\pm${:.4f} [м]\nt = {:.2f}$\pm${:.2f} [c]\nV = {:.2f}$\pm${:.2f} [м/c]'.format(
             length, dl, ltime, dt, length/ltime, dv(length, ltime, dl, dt)),
             fontsize=10, backgroundcolor='white', color='black')
 ax.vlines(ltime, 0, 150, color='black', linestyle='--')
@@ -119,7 +119,7 @@ duration = np.linspace(0, 3, len(data))
 ltime = time_srch(data, duration, 0.5, 1.5)
 
 ax.plot(duration, data, label='Уровень воды в кювете (80 мм)', linewidth=1, color='orange')
-plt.text(0.05, 85, 'L = {:.4f}$\pm${:.4f} [м]\nt = {:.3f}$\pm${:.3f} [c]\nV = {:.3f}$\pm${:.3f} [м/c]'.format(
+plt.text(0.05, 85, 'L = {:.4f}$\pm${:.4f} [м]\nt = {:.2f}$\pm${:.2f} [c]\nV = {:.2f}$\pm${:.2f} [м/c]'.format(
             length, dl, ltime, dt, length/ltime, dv(length, ltime, dl, dt)),
             fontsize=10, backgroundcolor='white', color='orange')
 ax.vlines(ltime, 0, 150, color='orange', linestyle='--')
@@ -135,7 +135,7 @@ duration = np.linspace(0, 3, len(data))
 ltime = time_srch(data, duration, 0.5, 2.3)
 
 ax.plot(duration, data, label='Уровень воды в кювете (40 мм)', linewidth=1, color='green')
-plt.text(0.05, 45, 'L = {:.4f}$\pm${:.4f} [м]\nt = {:.3f}$\pm${:.3f} [c]\nV = {:.3f}$\pm${:.3f} [м/c]'.format(
+plt.text(0.05, 45, 'L = {:.4f}$\pm${:.4f} [м]\nt = {:.2f}$\pm${:.2f} [c]\nV = {:.2f}$\pm${:.2f} [м/c]'.format(
             length, dl, ltime, dt, length/ltime, dv(length, ltime, dl, dt)),
             fontsize=10, backgroundcolor='white', color='green')
 ax.vlines(ltime, 0, 150, color='green', linestyle='--')
