@@ -12,6 +12,6 @@ try:
         finish = time.time()
 finally:
     b.deinitSpiAdc()
-    b.save(data, start, finish)
+    b.save(data, start, finish, 'fit')
     b.show(data)
     print("Эксперимент завершен\n")

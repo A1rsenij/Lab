@@ -1,7 +1,7 @@
 import bloodFunctions as b
 import time
 
-mm = 40 #insert pressure
+mm = 160 #insert pressure
 print("Калибровка " + str(mm))
 b.initSpiAdc()
 data = []
@@ -13,6 +13,6 @@ try:
         finish = time.time()
 finally:
     b.deinitSpiAdc()
-    b.save(data, start, finish)
+    b.save(data, start, finish, str(mm)+' mm')
     b.show(data)
     print("Калибровка завершена\n")

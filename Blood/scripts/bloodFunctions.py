@@ -30,8 +30,8 @@ def getAdc():
 #   Save and read data
 ########################################
 
-def save(samples, start, finish):
-    filename = 'blood-data {}.txt'.format(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start)))
+def save(samples, start, finish, pref):
+    filename = 'blood-data {} {}.txt'.format(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start)), pref)
 
     with open(filename, "w") as outfile:
         outfile.write('- Blood Lab\n')
