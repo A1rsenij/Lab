@@ -14,19 +14,19 @@ def prox(data, pr):
 pressure = np.array([40.0, 80.0, 120.0, 160.0])
 adc_data = []
 #40 mm
-file = 'blood-data 2021-12-02 15:57:02 40 mm.txt' #insert filename
+file = 'blood-data 2021-12-02 15_57_02 40 mm.txt' #insert filename
 data, dur, l = b.read(file)
 adc_data.append(data.mean())
 #80mm
-file = 'blood-data 2021-12-02 15:58:22 80 mm.txt' #insert filename
+file = 'blood-data 2021-12-02 15_58_22 80 mm.txt' #insert filename
 data, dur, l = b.read(file)
 adc_data.append(data.mean())
 #120mm
-file = 'blood-data 2021-12-02 15:59:26 120 mm.txt' #insert filename
+file = 'blood-data 2021-12-02 15_59_26 120 mm.txt' #insert filename
 data, dur, l = b.read(file)
 adc_data.append(data.mean())
 #160mm
-file = 'blood-data 2021-12-02 16:00:14 160 mm.txt' #insert filename
+file = 'blood-data 2021-12-02 16_00_14 160 mm.txt' #insert filename
 data, dur, l = b.read(file)
 adc_data.append(data.mean())
 #fit
@@ -60,14 +60,14 @@ fig.savefig("pressure-calibration.png", dpi = 500)
 
 #rest
 
-file = 'blood-data 2021-12-02 16:06:33 rest.txt' #insert filename
+file = 'blood-data 2021-12-02 16_06_33 rest.txt' #insert filename
 data, dur, l = b.read(file)
+data = np.polyval(k, data)
 pulse = []
 duration = np.linspace(0, dur, len(data))
 for i in range(0, len(data) - 500, 500):
     pulse.append((data[i + 500] - data[i]) / (duration[i + 500] - duration[i]))
 data = data[:l // 2:]
-data = np.polyval(k, data)
 duration = np.linspace(0, 30, len(data))
 
 s_pr, d_pr = 115, 78 #insert pressure
@@ -100,7 +100,7 @@ plt.show()
 fig.savefig("rest-pressure.png", dpi = 500)
 
 l = len(pulse)
-pulse = np.array(pulse[l//6 : l//2 :]) / 125
+pulse = np.array(pulse[l//6 : l//2 :]) / 20
 duration = np.linspace(10, 30, len(pulse))
 
 p = 75 #insert pulse
@@ -128,14 +128,14 @@ fig.savefig("rest-pulse.png", dpi = 500)
 
 #fitness
 
-file = 'blood-data 2021-12-02 16:09:02 fit.txt' #insert filename
+file = 'blood-data 2021-12-02 16_09_02 fit.txt' #insert filename
 data, dur, l = b.read(file)
+data = np.polyval(k, data)
 pulse = []
 duration = np.linspace(0, dur, len(data))
 for i in range(0, len(data) - 500, 500):
     pulse.append((data[i + 500] - data[i]) / (duration[i + 500] - duration[i]))
 data = data[:l // 2:]
-data = np.polyval(k, data)
 duration = np.linspace(0, 30, len(data))
 
 s_pr, d_pr = 152, 77 #insert pressure
@@ -167,7 +167,7 @@ plt.show()
 fig.savefig("fitness-pressure.png", dpi = 500)
 
 l = len(pulse)
-pulse = np.array(pulse[l//6 : l//2 :]) / 125
+pulse = np.array(pulse[l//6 : l//2 :]) / 20
 duration = np.linspace(10, 30, len(pulse))
 
 p =  123 #insert pulse
